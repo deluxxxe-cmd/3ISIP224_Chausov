@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace _3ISIP224_Chausov
 {
@@ -95,6 +96,37 @@ namespace _3ISIP224_Chausov
                     for(int i = 0; i < n; i++)
                     {
                         Console.WriteLine(names[i] + " - " + money[i] + " руб.");
+                    }
+                }
+                else if (choise == 4)
+                {
+                    Console.Write("Выберите курс валют");
+                    double kurs = double.Parse(Console.ReadLine());
+
+                    double sum = 0;
+                    for(int i = 0; i < n; i++)
+                    {
+                        sum = sum + money[i];
+                    }
+                    Console.WriteLine("Сумма валют: " + sum / kurs);
+                }
+                else if (choise == 5)
+                {
+                    Console.WriteLine("Введите название для поиска: ");
+                    string search = Console.ReadLine();
+
+                    bool found = false;
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (names[i].ToLower().Contains(search.ToLower()))
+                        {
+                            Console.WriteLine(names[i] + " - " + money[i] + " руб.");
+                            found = true;
+                        }
+                    }
+                    if (found == false)
+                    {
+                        Console.WriteLine("Расход не найден");
                     }
                 }
             }
