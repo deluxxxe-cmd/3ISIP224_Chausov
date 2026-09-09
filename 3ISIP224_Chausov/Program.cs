@@ -10,8 +10,13 @@ namespace _3ISIP224_Chausov
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите количество операции (от 0 до 40)");
-            int n = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите кол-во операции(2 - 40) ");
+            int n = int.Parse(Console.ReadLine());
+            while (n < 2 || n > 40)
+            {
+                Console.Write("Введите число (от 0 до 40)");
+                n = Convert.ToInt32(Console.ReadLine());
+            }
 
             string[] names = new string[n];
             double[] money = new double[n];
@@ -24,31 +29,75 @@ namespace _3ISIP224_Chausov
                 Console.Write("Кол-во денег: ");
                 money[i] = double.Parse(Console.ReadLine());
             }
-            Console.WriteLine("\n Все расходы:");
-            for (int i = 0; i < n; i++)
+            int choise = -1;
+            while(choise != 0)
             {
-                Console.WriteLine(names[i] + " - " + money[i] + "руб.");
-            }
-            double sum = 0;
-            double max = money[0];
-            double min = money[0];
+                Console.WriteLine("\n Меню ");
+                Console.WriteLine("1. Вывод данных");
+                Console.WriteLine("2. Статистика");
+                Console.WriteLine("3. Сортировка по цене");
+                Console.WriteLine("4. Конвертация валюты");
+                Console.WriteLine("5. Поиск по названию");
+                Console.WriteLine("0. Выход");
 
-            for(int i = 0; i < n; i++)
-            {
-                sum = sum + money[i];
-                if (money[i] > max)
+                Console.Write("Выберите пункт: ");
+                choise = int.Parse(Console.ReadLine());
+                if (choise == 1)
                 {
-                    max = money[i];
+                    Console.WriteLine("\n Все расходы:");
+                    for (int i = 0; i < n; i++)
+                    {
+                        Console.WriteLine(names[i] + " - " + money[i] + "руб.");
+                    }
                 }
-                if (money[i] < min) {
-                    min = money[i];
+                else if (choise == 2)
+                {
+                    double sum = 0;
+                    double max = money[0];
+                    double min = money[0];
+
+                    for (int i = 0; i < n; i++)
+                    {
+                        sum = sum + money[i];
+                        if (money[i] > max)
+                        {
+                            max = money[i];
+                        }
+                        if (money[i] < min)
+                        {
+                            min = money[i];
+                        }
+                    }
+                    double a = sum / n;
+                    Console.WriteLine("Сумма: " + sum + "руб");
+                    Console.WriteLine("Среднее " + a + "руб");
+                    Console.WriteLine("Максимальное " + max + "руб");
+                    Console.WriteLine("Минимальное " + min + "руб");
+                }
+                else if (choise == 3) {
+                    for (int i = 0; i < n - 1; i++)
+                    {
+                        for (int j = 0; j < n - 1 - i; j++)
+                        {
+                            if (money[j] > money[j + 1])
+                            {
+                                double temp = money[j];
+                                money[j] = money[j + 1];
+                                money[j + 1] = temp;
+
+                                string temName = names[j];
+                                names[j] = names[j + 1];
+                                names[j + 1] = temName;
+                            }
+                        }
+                    }
+                    Console.WriteLine("Расходы по возрастанию: ");
+                    for(int i = 0; i < n; i++)
+                    {
+                        Console.WriteLine(names[i] + " - " + money[i] + " руб.");
+                    }
                 }
             }
-            double a = sum / n;
-            Console.WriteLine("Сумма: " + sum + "руб");
-            Console.WriteLine("Среднее " + a + "руб");
-            Console.WriteLine("Максимальное " + max + "руб");
-            Console.WriteLine("Минимальное " + min + "руб");
         }
     }
 }
