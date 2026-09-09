@@ -100,7 +100,7 @@ namespace _3ISIP224_Chausov
                 }
                 else if (choise == 4)
                 {
-                    Console.Write("Выберите курс валют");
+                    Console.Write("Выберите курс валют (например 1 доллар - 80 рублей) ");
                     double kurs = double.Parse(Console.ReadLine());
 
                     double sum = 0;
