@@ -11,11 +11,11 @@ namespace _3ISIP224_Chausov
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите кол-во операции(2 - 40) ");
+            Console.Write("Введите кол-во операции (2 - 40) ");
             int n = int.Parse(Console.ReadLine());
             while (n < 2 || n > 40)
             {
-                Console.Write("Введите число (от 0 до 40)");
+                Console.Write("Введите число от 0 до 40");
                 n = Convert.ToInt32(Console.ReadLine());
             }
 
@@ -102,13 +102,15 @@ namespace _3ISIP224_Chausov
                 {
                     Console.Write("Выберите курс валют (например 1 доллар - 80 рублей) ");
                     double kurs = double.Parse(Console.ReadLine());
+                    Console.Write("Введите валюту (например: USD, CYN, EUR): ");
+                    string valuta = Console.ReadLine();
 
-                    double sum = 0;
+                    Console.WriteLine("\n Цены товаров в " + valuta + ":");
                     for(int i = 0; i < n; i++)
                     {
-                        sum = sum + money[i];
+                        double newMoney = Math.Round(money[i] / kurs, 1);
+                        Console.WriteLine(names[i] + " - " + newMoney + " " + valuta);
                     }
-                    Console.WriteLine("Сумма валют: " + sum / kurs);
                 }
                 else if (choise == 5)
                 {
